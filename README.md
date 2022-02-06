@@ -1,0 +1,1 @@
+# Touch-Boost-Disabler-Magisk-Module
