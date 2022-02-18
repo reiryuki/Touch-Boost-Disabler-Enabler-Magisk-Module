@@ -17,6 +17,9 @@
 - Install the module via Magisk Manager or recovery
 - Reboot
 
+## Bug Report
+- No bug report
+
 ## Credits and Contributors
 - https://t.me/androidryukimodsdiscussions
 - https://t.me/androidappsportdevelopment
