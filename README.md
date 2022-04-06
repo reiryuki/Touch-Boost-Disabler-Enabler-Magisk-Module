@@ -5,6 +5,7 @@
 - If you are in stock ROM (not a ported ROM) with the stock kernel, usually the Perf Touch Boost is configured correctly and you don't need this module. Disabling the Perf Touch Boost even causes issue like video can't be played.
 
 ## Requirements
+- A failure Perf Touch Boost configs (usually on custom ROMs)
 - Magisk installed
 
 ## Tested On
@@ -12,7 +13,7 @@
 
 ## Installation Guide
 - Install the module via Magisk Manager or recovery
-- Reboot
+- Reboot (in newer version, you don't need to reboot if installing via Magisk app)
 
 ## Bug Report
 - No bug report
