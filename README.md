@@ -1,4 +1,5 @@
-# Touch Boost Disabler Magisk Module [ DISCONTINUED ]
+# Touch Boost Disabler Magisk Module
+# [ DISCONTINUED ]
 
 ## Descriptions
 - Disables a failed Perf Touch Boost service on any custom ROMs if you feel it causes lag and or battery drain issue. Some custom ROMs are activating Perf Touch Boost feature but not implementing the right configurations with the specific platform and kernel. This tweak disables the buggy feature.
