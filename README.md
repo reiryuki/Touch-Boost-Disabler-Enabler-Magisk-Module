@@ -1,23 +1,31 @@
-# Touch Boost Disabler Magisk Module
-# [ DISCONTINUED ]
+# Touch Boost Disabler/Enabler Magisk Module
 
 ## Descriptions
-- Disables a failed Perf Touch Boost service on any custom ROMs if you feel it causes lag and or battery drain issue. Some custom ROMs are activating Perf Touch Boost feature but not implementing the right configurations with the specific platform and kernel. This tweak disables the buggy feature.
-- If you are in stock ROM (not a ported ROM) with the stock kernel, usually the Perf Touch Boost is configured correctly and you don't need this module. Disabling the Perf Touch Boost even causes issue like video can't be played.
+- Perf Touch Boost is turning minimum CPU frequency into the maximum frequency (or in another way) while you are touching your screen to increase performance
+- This module disables the Perf Touch Boost by default if you feel it's causing battery drain issue
+- This module can also enables/re-enables the Perf Touch Boost (Please READ Optionals bellow!)
 
 ## Requirements
-- A failure Perf Touch Boost configs (usually on custom ROMs)
-- Magisk installed
+- Magisk or KernelSU installed
+
+## Installation Guide
+- Install this module https://www.pling.com/p/1700219/ via Magisk or KernelSU app or Recovery (unless you are using KernelSU)
+- You don't need to reboot except you are installing via Recovery
 
 ## Tested On
 - Android 12 Ancient OS ROM
 
-## Installation Guide
-- Install the module via Magisk Manager or recovery
-- Reboot (in newer version, you don't need to reboot if installing via Magisk app)
+## Optionals and Troubleshootings
+- https://t.me/androidryukimodsdiscussions/166452
+- https://t.me/androidryukimodsdiscussions/29836
+- https://t.me/androidryukimodsdiscussions/60861
 
-## Bug Report
-- No bug report
+## Known Issue
+- Cannot play video in some ROMs if Perf Touch Boost is disabled
+
+## Support & Bug Report
+- https://t.me/androidryukimodsdiscussions/2618
+- If you don't do above, issues will be closed immediately
 
 ## Credits and Contributors
 - https://t.me/androidryukimodsdiscussions
@@ -27,5 +35,8 @@
 - https://t.me/androidryukimodsdiscussions/2619
 - https://www.paypal.me/reiryuki
 
-## Download
-- https://www.pling.com/p/1700219/
+
+
+
+
+

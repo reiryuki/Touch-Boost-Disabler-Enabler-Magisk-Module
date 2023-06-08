@@ -1,23 +1,24 @@
-(
-
-mount /data
 mount -o rw,remount /data
 MODPATH=${0%/*}
+API=`getprop ro.build.version.sdk`
 
 # debug
 exec 2>$MODPATH/debug.log
 set -x
 
 # wait
-sleep 60
+until [ "`getprop sys.boot_completed`" == "1" ]; do
+  sleep 10
+done
 
-# property
-resetprop sys.post_boot.parsed 0
-resetprop vendor.post_boot.parsed 0
+# run
+. $MODPATH/function.sh
+disable_perf
+min_cpu_freq
 
-# restart
-killall /vendor/bin/hw/vendor.qti.hardware.perf@*-service
 
-) 2>/dev/null
+
+
+
 
 
