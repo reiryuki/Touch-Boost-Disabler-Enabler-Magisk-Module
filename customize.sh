@@ -30,6 +30,9 @@ if [ "$BOOTMODE" != true ]; then
   else
     mount -o rw -t auto /dev/block/bootdevice/by-name/cust /vendor
   fi
+  mount -o rw -t auto /dev/block/bootdevice/by-name/system_ext /system_ext
+  mount -o rw -t auto /dev/block/bootdevice/by-name/product /product
+  mount -o rw -t auto /dev/block/bootdevice/by-name/odm /odm
   mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist
   mount -o rw -t auto /dev/block/bootdevice/by-name/metadata /metadata
 fi
@@ -52,14 +55,22 @@ rm -rf /cache/magisk/$MODID
 ui_print " "
 
 # check
-FILE=`find /vendor/bin/hw /system/vendor/bin/hw\
-     -type f -name vendor.qti.hardware.perf@*-service*`
+FILE=`find /*/bin/hw /*/*/bin/hw -type f -name vendor.qti.hardware.perf@*`
 if [ ! "$FILE" ]\
 && [ "`grep_prop module.test $OPTIONALS`" != 1 ]; then
   abort "! This vendor does not have Perf Touch Boost service"
 fi
 
 # run
+FILE=$MODPATH/sepolicy.rule
+FILE2=$MODPATH/sepolicy.pfsd
+if [ "$BOOTMODE" == true ]; then
+  if [ -f $FILE ]; then
+    magiskpolicy --live --apply $FILE
+  elif [ -f $FILE2 ]; then
+    magiskpolicy --live --apply $FILE2
+  fi
+fi
 . $MODPATH/function.sh
 if [ "`grep_prop touch.boost $OPTIONALS`" != 1 ]; then
   if [ "$BOOTMODE" == true ]; then
@@ -74,12 +85,12 @@ if [ "`grep_prop touch.boost $OPTIONALS`" != 1 ]; then
     ui_print "- Disables Perf Touch Boost at boot"
   fi
 else
+  sed -i 's|disable_perf|enable_perf|g' $MODPATH/service.sh
+  sed -i 's|min_cpu_freq||g' $MODPATH/service.sh
+  sed -i 's|Disables|Enables|g' $MODPATH/module.prop
   if [ "$BOOTMODE" == true ]; then
     ui_print "- Enables Perf Touch Boost now..."
     enable_perf
-    sed -i 's|disable_perf|enable_perf|g' $MODPATH/service.sh
-    sed -i 's|min_cpu_freq||g' $MODPATH/service.sh
-    sed -i 's|Disables|Enables|g' $MODPATH/module.prop
     ui_print "  Perf Touch Boost is already enabled"
     ui_print "  so you don't need to reboot"
     ui_print "  but keep this module installed"

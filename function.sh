@@ -1,11 +1,13 @@
+# var
+FILE=`find /*/bin/hw /*/*/bin/hw -type f -name vendor.qti.hardware.perf@*`
 # function
 enable_perf() {
 resetprop vendor.post_boot.parsed 1
-killall vendor.qti.hardware.perf@*-service
+killall $FILE
 }
 disable_perf() {
 resetprop vendor.post_boot.parsed 0
-killall vendor.qti.hardware.perf@*-service
+killall $FILE
 }
 min_cpu_freq() {
 FILE=`find /sys -name affected_cpus`
@@ -24,6 +26,8 @@ for AC in $ACS; do
 done
 SMF=`[ "$FILES" ] && cat $FILES`
 }
+
+
 
 
 
