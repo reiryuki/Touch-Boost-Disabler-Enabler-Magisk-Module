@@ -8,7 +8,7 @@
 ## Requirements
 - Magisk or KernelSU installed
 
-## Installation Guide
+## Installation Guide & Download Link
 - Install this module https://www.pling.com/p/1700219/ via Magisk or KernelSU app or Recovery (unless you are using KernelSU)
 - You don't need to reboot except you are installing via Recovery
 
