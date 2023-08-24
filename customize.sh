@@ -1,6 +1,17 @@
 # space
 ui_print " "
 
+# log
+if [ "$BOOTMODE" != true ]; then
+  FILE=/sdcard/$MODID\_recovery.log
+  ui_print "- Log will be saved at $FILE"
+  exec 2>$FILE
+  ui_print " "
+fi
+
+# run
+. $MODPATH/function.sh
+
 # info
 MODVER=`grep_prop version $MODPATH/module.prop`
 MODVERCODE=`grep_prop versionCode $MODPATH/module.prop`
@@ -11,30 +22,20 @@ if [ "$KSU" == true ]; then
   ui_print " KSUVersion=$KSU_VER"
   ui_print " KSUVersionCode=$KSU_VER_CODE"
   ui_print " KSUKernelVersionCode=$KSU_KERNEL_VER_CODE"
+  sed -i 's|#k||g' $MODPATH/post-fs-data.sh
 else
   ui_print " MagiskVersion=$MAGISK_VER"
   ui_print " MagiskVersionCode=$MAGISK_VER_CODE"
 fi
 ui_print " "
 
+# recovery
+mount_partitions_in_recovery
+
 # optionals
 OPTIONALS=/sdcard/optionals.prop
 if [ ! -f $OPTIONALS ]; then
   touch $OPTIONALS
-fi
-
-# mount
-if [ "$BOOTMODE" != true ]; then
-  if [ -e /dev/block/bootdevice/by-name/vendor ]; then
-    mount -o rw -t auto /dev/block/bootdevice/by-name/vendor /vendor
-  else
-    mount -o rw -t auto /dev/block/bootdevice/by-name/cust /vendor
-  fi
-  mount -o rw -t auto /dev/block/bootdevice/by-name/system_ext /system_ext
-  mount -o rw -t auto /dev/block/bootdevice/by-name/product /product
-  mount -o rw -t auto /dev/block/bootdevice/by-name/odm /odm
-  mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist
-  mount -o rw -t auto /dev/block/bootdevice/by-name/metadata /metadata
 fi
 
 # sepolicy
@@ -47,31 +48,17 @@ fi
 
 # cleaning
 ui_print "- Cleaning..."
-rm -rf /metadata/magisk/$MODID
-rm -rf /mnt/vendor/persist/magisk/$MODID
-rm -rf /persist/magisk/$MODID
-rm -rf /data/unencrypted/magisk/$MODID
-rm -rf /cache/magisk/$MODID
+remove_sepolicy_rule
 ui_print " "
 
 # check
-FILE=`find /*/bin/hw /*/*/bin/hw -type f -name vendor.qti.hardware.perf@*`
-if [ ! "$FILE" ]\
+perf_service
+if [ ! "$SVC" ]\
 && [ "`grep_prop module.test $OPTIONALS`" != 1 ]; then
   abort "! This vendor does not have Perf Touch Boost service"
 fi
 
-# run
-FILE=$MODPATH/sepolicy.rule
-FILE2=$MODPATH/sepolicy.pfsd
-if [ "$BOOTMODE" == true ]; then
-  if [ -f $FILE ]; then
-    magiskpolicy --live --apply $FILE
-  elif [ -f $FILE2 ]; then
-    magiskpolicy --live --apply $FILE2
-  fi
-fi
-. $MODPATH/function.sh
+# apply
 if [ "`grep_prop touch.boost $OPTIONALS`" != 1 ]; then
   if [ "$BOOTMODE" == true ]; then
     ui_print "- Disables Perf Touch Boost now..."

@@ -1,8 +1,7 @@
 mount -o rw,remount /data
 MODPATH=${0%/*}
-API=`getprop ro.build.version.sdk`
 
-# debug
+# log
 exec 2>$MODPATH/debug.log
 set -x
 
@@ -13,6 +12,7 @@ done
 
 # run
 . $MODPATH/function.sh
+perf_service
 disable_perf
 min_cpu_freq
 
