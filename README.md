@@ -6,6 +6,7 @@
 - This module can also enable/re-enable the Perf Touch Boost (Please READ Optionals bellow!)
 
 ## Requirements
+- vendor.qti.hardware.perf@* service
 - Magisk or KernelSU installed
 
 ## Installation Guide & Download Link
@@ -17,8 +18,8 @@
 
 ## Optionals and Troubleshootings
 - https://t.me/androidryukimodsdiscussions/166452
-- https://t.me/androidryukimodsdiscussions/29836
-- https://t.me/androidryukimodsdiscussions/60861
+- Global: https://t.me/androidryukimodsdiscussions/29836
+- Global: https://t.me/androidryukimodsdiscussions/60861
 
 ## Known Issue
 - Cannot play video in some ROMs if Perf Touch Boost is disabled
