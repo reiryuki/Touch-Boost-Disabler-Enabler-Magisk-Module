@@ -13,20 +13,18 @@
 - Install this module https://www.pling.com/p/1700219/ via Magisk app or KernelSU app or Recovery if Magisk installed
 - You don't need to reboot except you are installing via Recovery
 
-## Tested on
-- Android 12 Ancient OS ROM
-- Android 14 LineageOS ROM
+## Optionals
+- https://t.me/ryukinotes/76
+- Global: https://t.me/ryukinotes/35
 
-## Optionals and Troubleshootings
-- https://t.me/androidryukimodsdiscussions/166452
-- Global: https://t.me/androidryukimodsdiscussions/29836
-- Global: https://t.me/androidryukimodsdiscussions/60861
+## Troubleshootings
+- Global: https://t.me/ryukinotes/34
 
 ## Known Issue
 - Cannot play video in some ROMs if Perf Touch Boost is disabled
 
 ## Support & Bug Report
-- https://t.me/androidryukimodsdiscussions/2618
+- https://t.me/ryukinotes/54
 - If you don't do above, issues will be closed immediately
 
 ## Credits and Contributors
@@ -34,6 +32,6 @@
 - You can contribute ideas about this Magisk Module here: https://t.me/androidappsportdevelopment
 
 ## Sponsors
-- https://t.me/androidryukimodsdiscussions/2619
+- https://t.me/ryukinotes/25
 
 
