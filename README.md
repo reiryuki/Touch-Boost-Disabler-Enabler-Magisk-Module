@@ -5,12 +5,42 @@
 - This module disables the Perf Touch Boost by default if you feel it's causing battery drain issue
 - This module can also enable/re-enable the Perf Touch Boost (Please READ Optionals bellow!)
 
+## Changelog
+
+v0.7
+- Update libmagiskpolicy.so from Magisk (stable) 30.7 (30700)
+- Resets module folders/files permissions at post-fs-data
+- Move _uninstall.log to /data/adb/logs/
+
+v0.6
+- Fix bug in uninstall.sh
+
+v0.5
+- Fix conflict with modules_update while installing via recovery if Magisk installed
+- Sets cpu_min_freq to 0 if Perf Touch Boost is disabled
+
+v0.4
+- Redirect /sdcard to /data/media/"$UID"
+- Add optional debug.log=1 for more detailed install log
+
+v0.3
+- Save install log at /sdcard/..._recovery.log if installing via Recovery
+- Save uninstall log at /data/media/0/..._uninstall.log
+- Fix mount required partitions while installing via Recovery
+- Fix functions
+
+v0.2
+- Fix script bugs
+
+v0.1
+- Initial release
+
 ## Requirements
 - vendor.qti.hardware.perf@*-service
-- Magisk or KernelSU installed
+- Magisk or Kitsune Mask or KernelSU or Apatch installed
 
 ## Installation Guide & Download Link
-- Install this module https://www.pling.com/p/1700219/ via Magisk app or KernelSU app or Recovery if Magisk installed
+- Install this module https://github.com/reiryuki/Touch-Boost-Disabler-Enabler-Magisk-Module via Magisk app or Kitsune Mask app or KernelSU app or Apatch app or Recovery if Magisk or Kitsune Mask installed
 - You don't need to reboot except you are installing via Recovery
 
 ## Optionals
@@ -18,10 +48,10 @@
 - Global: https://t.me/ryukinotes/35
 
 ## Troubleshootings
-- Global: https://t.me/ryukinotes/34
+Global: https://t.me/ryukinotes/34
 
 ## Known Issue
-- Cannot play video in some ROMs if Perf Touch Boost is disabled
+Cannot play video if Perf Touch Boost is disabled in some ROMs
 
 ## Support & Bug Report
 - https://t.me/ryukinotes/54
@@ -29,9 +59,9 @@
 
 ## Credits and Contributors
 - https://t.me/androidryukimodsdiscussions
-- You can contribute ideas about this Magisk Module here: https://t.me/androidappsportdevelopment
+- https://t.me/androidappsportdevelopment
 
 ## Sponsors
-- https://t.me/ryukinotes/25
+https://t.me/ryukinotes/25
 
 

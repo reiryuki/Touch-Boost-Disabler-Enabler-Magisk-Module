@@ -67,7 +67,45 @@ fi
 # cleaning
 ui_print "- Cleaning..."
 remove_sepolicy_rule
+rm -rf $MODPATH/image
 ui_print " "
+
+# function
+permissive_2() {
+sed -i 's|#2||g' $MODPATH/post-fs-data.sh
+}
+permissive() {
+FILE=/sys/fs/selinux/enforce
+FILE2=/sys/fs/selinux/policy
+if [ "`toybox cat $FILE`" = 1 ]; then
+  chmod 640 $FILE
+  chmod 440 $FILE2
+  echo 0 > $FILE
+  if [ "`toybox cat $FILE`" = 1 ]; then
+    ui_print "  Your device can't be turned to Permissive state."
+    ui_print "  Using Magisk Permissive mode instead."
+    permissive_2
+  else
+    echo 1 > $FILE
+    sed -i 's|#1||g' $MODPATH/post-fs-data.sh
+  fi
+else
+  sed -i 's|#1||g' $MODPATH/post-fs-data.sh
+fi
+}
+
+# permissive
+if [ "`grep_prop permissive.mode $OPTIONALS`" == 1 ]; then
+  ui_print "- Using device Permissive mode."
+  rm -f $MODPATH/sepolicy.rule
+  permissive
+  ui_print " "
+elif [ "`grep_prop permissive.mode $OPTIONALS`" == 2 ]; then
+  ui_print "- Using Magisk Permissive mode."
+  rm -f $MODPATH/sepolicy.rule
+  permissive_2
+  ui_print " "
+fi
 
 # check
 perf_service
